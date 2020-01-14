@@ -1,0 +1,26 @@
+{% load bootstrap3 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>笔记日志</title>
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+{# Static navbar #}
+<p><a href="{% url 'learning_logs:index' %}">Learning Log</a>></p>
+<p>
+􏱾 <a href="{% url 'learning_logs:index' %}">Learning Log</a> - 􏱿 <a href="{% url 'learning_logs:topics' %}">Topics</a> -
+    <a href="{% url 'learning_logs:new_topic' %}">add new Topic</a>
+    {% if user.is_authenticated %}
+        - 登录成功 - Hello, {{ user.username }}.
+        <a href="{% url 'users:login' %}"> - logout</a>
+    {% else %}
+        - <a href="{% url 'users:register' %}">register</a>
+        <a href="{% url 'users:login' %}"> - login</a>
+    {% endif %}
+</p>
+{% block content %}{% endblock content %}
+</body>
+</html>
